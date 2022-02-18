@@ -15,13 +15,28 @@ router.get("/all", (req, res) => {
 
 router.post("/", (req, res) => {
   const userValues = [req.body.firstname, req.body.lastname, req.body.mail];
-  console.log(userValues);
   mysql.query(
     "INSERT INTO user (firstname, lastname, mail) VALUES (?,?,?)",
     userValues,
     (err, result) => {
       if (err) {
         res.status(400).send("Error posting an user");
+      } else {
+        res.status(200).json(result);
+      }
+    }
+  );
+});
+
+router.put("/", (req, res) => {
+  const userId = req.body.id;
+  const userValues = req.body;
+  mysql.query(
+    "UPDATE user SET ? WHERE ID = ?",
+    [userValues, userId],
+    (err, result) => {
+      if (err) {
+        res.status(400).send("Error updating user");
       } else {
         res.status(200).json(result);
       }
