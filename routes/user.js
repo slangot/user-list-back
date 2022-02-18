@@ -13,4 +13,15 @@ router.get("/all", (req, res) => {
   });
 });
 
+router.delete("/:id", (req, res) => {
+  const userId = [req.params.id];
+  mysql.query("DELETE FROM user WHERE ID = ?", userId, (err, result) => {
+    if (err) {
+      res.status(500).send("Error while deleting the user");
+    } else {
+      res.status(200).send("User deleted");
+    }
+  });
+});
+
 module.exports = router;
