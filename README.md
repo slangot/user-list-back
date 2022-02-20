@@ -15,10 +15,10 @@ La seconde est un service frontend réalisé en **React**
 Faire un `npm install` pour installer les dépendances nécessaires.
 
 Création de la base de données et de la table :
-Executer le fichier `script.sql`
+Executer le fichier `script.sql` du dossier **_ ressources _**
 
 Insertion des données :
-Exexuter le fichier `insert.sql`
+Exexuter le fichier `insert.sql` du dossier **_ ressources _**
 
 Créer un nouveau fichier à la racine nommé `.env`
 
