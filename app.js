@@ -20,7 +20,7 @@ connection.connect((err) => {
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.urlencoded({ extended: true }));
-app.use("/user", routes.user);
+app.use("/users", routes.users);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

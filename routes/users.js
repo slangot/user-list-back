@@ -4,7 +4,7 @@ const mysql = require("../db-config");
 const router = express.Router();
 
 router.get("/all", (req, res) => {
-  mysql.query("SELECT * FROM user", (err, result) => {
+  mysql.query("SELECT * FROM users", (err, result) => {
     if (err) {
       res.status(404).send("Error while retrieving users");
     } else {
@@ -16,7 +16,7 @@ router.get("/all", (req, res) => {
 router.post("/", (req, res) => {
   const userValues = [req.body.firstname, req.body.lastname, req.body.mail];
   mysql.query(
-    "INSERT INTO user (firstname, lastname, mail) VALUES (?,?,?)",
+    "INSERT INTO users (firstname, lastname, mail) VALUES (?,?,?)",
     userValues,
     (err, result) => {
       if (err) {
@@ -32,7 +32,7 @@ router.put("/", (req, res) => {
   const userId = req.body.id;
   const userValues = req.body;
   mysql.query(
-    "UPDATE user SET ? WHERE ID = ?",
+    "UPDATE users SET ? WHERE ID = ?",
     [userValues, userId],
     (err, result) => {
       if (err) {
@@ -46,11 +46,11 @@ router.put("/", (req, res) => {
 
 router.delete("/:id", (req, res) => {
   const userId = [req.params.id];
-  mysql.query("DELETE FROM user WHERE ID = ?", userId, (err, result) => {
+  mysql.query("DELETE FROM users WHERE ID = ?", userId, (err, result) => {
     if (err) {
       res.status(400).send("Error deleting the user");
     } else {
-      res.status(200).send("User deleted");
+      res.status(200).json(result);
     }
   });
 });

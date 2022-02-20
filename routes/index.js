@@ -1,3 +1,3 @@
-const user = require("./user");
+const users = require("./users");
 
-module.exports = { user };
+module.exports = { users };
